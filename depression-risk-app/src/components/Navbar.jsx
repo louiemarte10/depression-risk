@@ -4,16 +4,30 @@ import { Stethoscope } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <nav className="bg-[#27284D] text-white shadow-md">
-      <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-        {/* Left section: Logo + Title */}
-        <div className="flex items-center">
-          <Stethoscope className="w-6 h-6 mr-2" />
-          <Link
-            to="/"
-            className="text-lg font-semibold no-underline hover:no-underline"
+    <nav className="bg-white shadow-sm fixed w-full top-0 z-50">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        {/* Logo + Title */}
+        <Link
+          to="/"
+          className="flex items-center space-x-2"
+          style={{ textDecoration: "none" }}
+        >
+          <Stethoscope className="w-6 h-6 text-[#27284D]" />
+          <h2
+            className="text-lg font-semibold text-[#27284D]"
+            style={{ margin: 0 }}
           >
             Depression Risk Management
+          </h2>
+        </Link>
+
+        {/* Links */}
+        <div className="space-x-6 hidden md:flex font-medium text-gray-700">
+          <Link to="/" className="hover:text-[#27284D]">
+            Home
+          </Link>
+          <Link to="/assessment" className="hover:text-[#27284D]">
+            Assessment
           </Link>
         </div>
       </div>
