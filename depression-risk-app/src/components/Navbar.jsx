@@ -13,23 +13,10 @@ export default function Navbar() {
           style={{ textDecoration: "none" }}
         >
           <Stethoscope className="w-6 h-6 text-[#27284D]" />
-          <h2
-            className="text-lg font-semibold text-[#27284D]"
-            style={{ margin: 0 }}
-          >
+          <h2 className="text-lg font-semibold text-[#27284D] m-0">
             Depression Risk Management
           </h2>
         </Link>
-
-        {/* Links */}
-        <div className="space-x-6 hidden md:flex font-medium text-gray-700">
-          <Link to="/" className="hover:text-[#27284D]">
-            Home
-          </Link>
-          <Link to="/assessment" className="hover:text-[#27284D]">
-            Assessment
-          </Link>
-        </div>
       </div>
     </nav>
   );

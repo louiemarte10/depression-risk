@@ -17,6 +17,7 @@ const DepressionRiskAssessment = () => {
     { id: 8, name: "Thoughts of death or suicide" },
   ];
 
+  // Added 'very-high' risk
   const riskDescriptions = {
     low: {
       title: "Low Risk",
@@ -63,6 +64,21 @@ const DepressionRiskAssessment = () => {
       borderColor: "#fecaca",
       icon: XCircle,
     },
+    "very-high": {
+      title: "Very High Risk",
+      description:
+        "Severe and persistent symptoms. Immediate professional help is strongly recommended.",
+      recommendations: [
+        "Contact a mental health professional urgently",
+        "Do not be alone; reach out to friends or family",
+        "Consider crisis intervention services",
+        "Follow a structured treatment plan as advised by professionals",
+      ],
+      color: "#7f1d1d",
+      bgColor: "#fca5a5",
+      borderColor: "#f87171",
+      icon: XCircle,
+    },
   };
 
   const handleSymptomChange = (symptomId, days) => {
@@ -84,7 +100,13 @@ const DepressionRiskAssessment = () => {
     const hasHighRiskSymptom = selectedSymptoms[8] > 0;
 
     let risk;
-    if (hasHighRiskSymptom || (totalSymptoms >= 5 && avgDuration >= 14)) {
+    // Determine 'very-high' if >=7 symptoms lasting 21+ days
+    if (totalSymptoms >= 7 && avgDuration >= 21) {
+      risk = "very-high";
+    } else if (
+      hasHighRiskSymptom ||
+      (totalSymptoms >= 5 && avgDuration >= 14)
+    ) {
       risk = "high";
     } else if (totalSymptoms >= 3 && avgDuration >= 7) {
       risk = "moderate";
@@ -106,7 +128,7 @@ const DepressionRiskAssessment = () => {
   const allZero =
     Object.values(selectedSymptoms).reduce((sum, val) => sum + val, 0) === 0;
 
-  // Manual grid and card styles
+  // Manual styles
   const gridStyle = {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
@@ -307,26 +329,6 @@ const DepressionRiskAssessment = () => {
                   )}
                 </ul>
               </div>
-
-              {riskLevel === "high" && (
-                <div
-                  style={{
-                    marginTop: "16px",
-                    padding: "12px",
-                    borderRadius: "8px",
-                    backgroundColor: "#fee2e2",
-                    border: "1px solid #fecaca",
-                  }}
-                >
-                  <p style={{ fontWeight: 600, color: "#b91c1c" }}>
-                    🚨 If you're having thoughts of self-harm, please contact:
-                  </p>
-                  <p style={{ marginTop: "4px", color: "#dc2626" }}>
-                    National Suicide Prevention Lifeline: 988 (US) | Emergency:
-                    911
-                  </p>
-                </div>
-              )}
             </div>
 
             <div style={{ textAlign: "center" }}>
