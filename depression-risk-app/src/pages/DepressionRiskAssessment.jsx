@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { AlertTriangle, CheckCircle, XCircle, Info } from "lucide-react";
 
 const DepressionRiskAssessment = () => {
@@ -144,7 +145,7 @@ const DepressionRiskAssessment = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "40px 20px",
+        // padding: "40px 20px",
       }}
     >
       <div
@@ -158,11 +159,14 @@ const DepressionRiskAssessment = () => {
         }}
       >
         <div style={{ textAlign: "center", marginBottom: "40px" }}>
-          <h2
-            style={{ fontSize: "28px", fontWeight: "bold", color: "#4f46e5" }}
-          >
-            🩺 Depression Risk Assessment
-          </h2>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <h2
+              style={{ fontSize: "28px", fontWeight: "bold", color: "#4f46e5" }}
+            >
+              🩺 Depression Risk Assessment
+            </h2>
+          </Link>
+
           <p style={{ color: "#4b5563", marginTop: "8px" }}>
             Select the symptoms you've experienced and indicate how many days
           </p>
