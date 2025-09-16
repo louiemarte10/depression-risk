@@ -1,59 +1,136 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import bgImage from "../images/bg2.jpg"; // adjust path if needed
 
 export default function LandingPage() {
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    // Trigger animation on mount
+    const timer = setTimeout(() => setAnimate(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Animation styles
+  const overlayStyle = {
+    position: "absolute",
+    inset: 0,
+    backgroundColor: "rgba(0,0,0,0.6)",
+    opacity: animate ? 1 : 0,
+    transition: "opacity 1s ease-in-out",
+  };
+
+  const heroStyle = {
+    maxWidth: "768px",
+    margin: "0 auto",
+    textAlign: "center",
+    transform: animate ? "translateY(0)" : "translateY(40px)",
+    opacity: animate ? 1 : 0,
+    transition: "all 1s ease-in-out",
+  };
+
+  const titleStyle = {
+    fontSize: "2.5rem",
+    fontWeight: 800,
+    color: "#ffffff",
+    marginBottom: "1.5rem",
+    lineHeight: "1.2",
+    transform: animate ? "translateY(0)" : "translateY(20px)",
+    opacity: animate ? 1 : 0,
+    transition: "all 1s ease-in-out 0.3s", // delay for staggered effect
+  };
+
+  const subtitleStyle = {
+    color: "#e5e7eb",
+    fontSize: "1.125rem",
+    marginBottom: "2.5rem",
+    lineHeight: "1.6",
+    transform: animate ? "translateY(0)" : "translateY(20px)",
+    opacity: animate ? 1 : 0,
+    transition: "all 1s ease-in-out 0.5s",
+  };
+
+  const buttonStyle = {
+    backgroundColor: "#27284D",
+    borderRadius: "9999px",
+    padding: "0.75rem 2rem",
+    fontWeight: 600,
+    color: "#ffffff",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+    cursor: "pointer",
+    border: "none",
+    transition: "all 0.3s ease-in-out",
+    transform: animate ? "translateY(0)" : "translateY(20px)",
+    opacity: animate ? 1 : 0,
+    transitionDelay: "0.7s",
+  };
+
   return (
     <div
-      className="flex flex-col min-h-screen relative bg-gradient-to-br from-indigo-50 via-white to-blue-50"
       style={{
-        // backgroundImage: `url(${bgImage})`,
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+        position: "relative",
+        overflow: "hidden",
         backgroundColor: "#faf8ff80",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "100vh",
-        position: "relative",
-        overflow: "hidden",
+        backgroundImage: `url(${bgImage})`,
       }}
     >
-      {/* Overlay with 60% opacity */}
-      <div className="absolute inset-0 bg-black opacity-60"></div>
+      {/* Overlay */}
+      <div style={overlayStyle}></div>
 
       {/* Hero Section */}
       <main
-        className="flex flex-1 items-center justify-center px-6 text-center relative z-10 pt-20"
-        style={{ textAlign: "center", paddingTop: "5rem" }}
+        style={{
+          flex: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "5rem 1.5rem",
+          position: "relative",
+          zIndex: 10,
+        }}
       >
-        {/* 👆 pt-20 offsets the fixed navbar height */}
-
-        <div className="max-w-3xl mx-auto">
+        <div style={heroStyle}>
           {/* Section Label */}
-          <h2 className="text-[#4F46E5] font-semibold mb-3 flex items-center justify-center space-x-2">
+          <h2
+            style={{
+              color: "#b6b6baff",
+              fontSize: "28px",
+              fontWeight: "bold",
+              marginBottom: "0.75rem",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.5rem",
+            }}
+          >
             <span role="img" aria-label="stethoscope">
               🩺
             </span>
-            <span>Depression Risk Management</span>
+            Depression Risk Management
           </h2>
 
           {/* Title */}
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-100 mb-6 leading-tight">
+          <h1 style={titleStyle}>
             Take Control of Your Mental Health <br />
-            with <span className="text-white">Depression Risk Management</span>
+            with{" "}
+            <span style={{ color: "#ffffff" }}>Depression Risk Management</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-gray-200 mb-10 text-lg md:text-xl leading-relaxed">
+          <p style={subtitleStyle}>
             A simple and educational screening tool to help you understand your
             potential risk level. Get started today — free, no registration
             needed.
           </p>
 
           {/* CTA Button */}
-          <div className="flex justify-center">
-            <Link
-              to="/assessment"
-              className="bg-[#27284D] rounded-full px-8 py-3 font-semibold text-white shadow-md hover:bg-[#1f213b] transition-colors"
-            >
+          <div>
+            <Link to="/assessment" style={buttonStyle}>
               Start Assessment
             </Link>
           </div>
