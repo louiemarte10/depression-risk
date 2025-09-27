@@ -326,8 +326,8 @@ const DepressionRiskAssessment = () => {
                     🚨 If you're having thoughts of self-harm, please contact:
                   </p>
                   <p style={{ marginTop: "4px", color: "#dc2626" }}>
-                    National Suicide Prevention Lifeline: 988 (US) | Emergency:
-                    911
+                    National Suicide Prevention Lifeline: 0919-057-1553 (PH) |
+                    Emergency: 911
                   </p>
                 </div>
               )}
